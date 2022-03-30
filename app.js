@@ -1,6 +1,7 @@
 const container = document.querySelector('.container')
 const buttonsContainer = document.querySelector('.buttons')
 const btnBlack = document.createElement('button')
+const btnReset = document.createElement('button')
 
 // This makes the grids -- Columns x Rows
 function createDivs(columns, rows) {
@@ -39,3 +40,14 @@ function blackColor() {
   buttonsContainer.appendChild(btnBlack).classList.add('btn')
 }
 blackColor()
+
+function resetButton() {
+  const boxs = container.querySelectorAll('.box')
+  btnReset.textContent = 'RESET'
+
+  btnReset.addEventListener('click', function () {
+    location.reload()
+  })
+  buttonsContainer.appendChild(btnReset).classList.add('btn')
+}
+resetButton()
