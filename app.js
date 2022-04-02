@@ -2,6 +2,7 @@ const container = document.querySelector('.container')
 const buttonsContainer = document.querySelector('.buttons')
 const btnBlack = document.createElement('button')
 const btnReset = document.createElement('button')
+const btnSize = document.createElement('button')
 
 // This makes the grids -- Columns x Rows
 function createDivs(columns, rows) {
@@ -19,7 +20,7 @@ createDivs(16, 16)
 function blackColor() {
   // Below is accessing the nodelist
   const boxs = container.querySelectorAll('.box')
-  btnBlack.textContent = 'BLACK'
+  btnBlack.textContent = 'Black'
 
   // Below is referencing the "Event Handler"(function ()) function in the event listener that will ultimately enact the event we want once it's called.
   btnBlack.addEventListener('click', function () {
@@ -43,7 +44,7 @@ blackColor()
 
 function resetButton() {
   const boxs = container.querySelectorAll('.box')
-  btnReset.textContent = 'RESET'
+  btnReset.textContent = 'Reset'
 
   btnReset.addEventListener('click', function () {
     location.reload()
@@ -51,3 +52,29 @@ function resetButton() {
   buttonsContainer.appendChild(btnReset).classList.add('btn')
 }
 resetButton()
+
+function removeBoxs() {
+  const boxs = container.querySelectorAll('.box')
+  boxs.forEach((box) => {
+    box.remove()
+  })
+}
+
+function gridSize() {
+  btnSize.textContent = 'Change Gride Size'
+  btnSize.addEventListener('click', function () {
+    let num = prompt('Please enter a number', '16')
+    if (num === null || num < 1) {
+      removeBoxs()
+      createDivs(16, 16)
+      blackColor()
+    } else {
+      removeBoxs()
+      createDivs(num, num)
+      blackColor()
+    }
+  })
+  buttonsContainer.appendChild(btnSize).classList.add('btn')
+}
+
+gridSize()
